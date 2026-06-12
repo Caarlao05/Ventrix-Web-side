@@ -7,6 +7,7 @@ import AboutUs from './components/AboutUs';
 import { ShaderAnimation } from './components/ui/shader-animation';
 import { Reveal } from './components/Reveal';
 import GlassSelect from './components/ui/GlassSelect';
+import BackgroundEffects from './components/ui/BackgroundEffects';
 import {
   Info,
   X,
@@ -179,6 +180,7 @@ ${contactForm.message}
   return (
     <div style={{ minHeight: '100vh', position: 'relative' }}>
       <ShaderAnimation />
+      <BackgroundEffects />
       {/* 1. CORPORATE NAV BAR */}
       <div className={`header-wrapper ${isHeaderHidden ? 'header-hidden' : ''}`}>
         <header className="header">
