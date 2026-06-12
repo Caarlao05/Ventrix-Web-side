@@ -8,40 +8,53 @@ interface CatalogTableProps {
   onQuoteRequest?: (products: string[]) => void;
 }
 
-const ProductRow = React.memo(({ producto, isSelected, onToggle, hasMedida, hasPaquete, hasFardo }: any) => {
+const ProductRow = React.memo(({ producto, isSelected, onToggle, hasMedida, hasPaquete, hasFardo, index }: any) => {
   return (
-    <tr 
-      className={`b2b-row ${isSelected ? 'selected' : ''}`}
+    <div 
+      className={`b2b-row animate-fade-in-up ${isSelected ? 'selected' : ''}`}
+      style={{ 
+        animationDelay: `${index * 40}ms`,
+        display: 'flex',
+        alignItems: 'center',
+        padding: '24px 32px',
+        gap: '24px'
+      }}
       onClick={() => onToggle(producto.key)}
     >
-      <td className="b2b-cell b2b-cell-checkbox">
+      <div className="b2b-cell-checkbox" style={{ flexShrink: 0 }}>
         {isSelected ? (
-          <CheckCircle2 size={24} color="var(--color-cta)" fill="rgba(0, 176, 80, 0.15)" strokeWidth={2} />
+          <CheckCircle2 size={28} color="var(--color-cta)" fill="rgba(0, 176, 80, 0.15)" strokeWidth={2} />
         ) : (
-          <Circle size={24} color="rgba(0,0,0,0.15)" strokeWidth={1.5} />
+          <Circle size={28} color="rgba(255,255,255,0.2)" strokeWidth={1.5} />
         )}
-      </td>
-      <td className="b2b-cell">
-        <span className="b2b-sku">{producto.key}</span>
-        <div className="b2b-title">{producto.descripcion}</div>
-        {producto.colores && <div className="b2b-subtitle text-muted">{producto.colores}</div>}
-      </td>
-      {hasMedida && (
-        <td className="b2b-cell b2b-measure">
-          {producto.tamano && producto.tamano !== "N/A" ? producto.tamano : (producto.medidas || "")}
-        </td>
-      )}
-      {hasPaquete && (
-        <td className="b2b-cell b2b-package">
-          {producto.paquete || ""}
-        </td>
-      )}
-      {hasFardo && (
-        <td className="b2b-cell b2b-bundle">
-          {producto.fardo || ""}
-        </td>
-      )}
-    </tr>
+      </div>
+      <div className="b2b-cell-main" style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <span className="b2b-sku" style={{ fontSize: '0.85rem', color: 'var(--secondary-accent)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>{producto.key}</span>
+        <div className="b2b-title" style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-inverse)' }}>{producto.descripcion}</div>
+        {producto.colores && <div className="b2b-subtitle" style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)' }}>{producto.colores}</div>}
+      </div>
+      
+      <div style={{ display: 'flex', gap: '48px', alignItems: 'center', flexWrap: 'wrap' }}>
+        {hasMedida && (
+          <div className="b2b-measure-block" style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>Dimensiones</span>
+            <span style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{producto.tamano && producto.tamano !== "N/A" ? producto.tamano : (producto.medidas || "-")}</span>
+          </div>
+        )}
+        {hasPaquete && (
+          <div className="b2b-package-block" style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>Por Paquete</span>
+            <span style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{producto.paquete || "-"}</span>
+          </div>
+        )}
+        {hasFardo && (
+          <div className="b2b-bundle-block" style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>Por Fardo</span>
+            <span style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)' }}>{producto.fardo || "-"}</span>
+          </div>
+        )}
+      </div>
+    </div>
   );
 });
 
@@ -69,31 +82,19 @@ export default function CatalogTable({ onQuoteRequest }: CatalogTableProps) {
     const hasFardo = categoria.productos.some((p: any) => p.fardo);
 
     return (
-      <div className="b2b-table-container">
-        <table className="b2b-table">
-          <thead>
-            <tr>
-              <th style={{ width: '60px' }}></th>
-              <th>Producto</th>
-              {hasMedida && <th>Medida / Tamaño</th>}
-              {hasPaquete && <th>Por Paquete</th>}
-              {hasFardo && <th>Por Fardo</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {categoria.productos.map((producto: any) => (
-              <ProductRow
-                key={producto.key}
-                producto={producto}
-                isSelected={selectedItems.has(producto.key)}
-                onToggle={toggleSelection}
-                hasMedida={hasMedida}
-                hasPaquete={hasPaquete}
-                hasFardo={hasFardo}
-              />
-            ))}
-          </tbody>
-        </table>
+      <div className="b2b-list-container" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        {categoria.productos.map((producto: any, index: number) => (
+          <ProductRow
+            key={producto.key}
+            index={index}
+            producto={producto}
+            isSelected={selectedItems.has(producto.key)}
+            onToggle={toggleSelection}
+            hasMedida={hasMedida}
+            hasPaquete={hasPaquete}
+            hasFardo={hasFardo}
+          />
+        ))}
       </div>
     );
   }, [selectedItems, toggleSelection]);
@@ -119,7 +120,7 @@ export default function CatalogTable({ onQuoteRequest }: CatalogTableProps) {
   }, [renderProductCards, searchQuery]);
 
   return (
-    <div className="catalog-table-container catalog-dot-bg" style={{ padding: '40px 0', minHeight: '800px', position: 'relative', overflow: 'hidden' }}>
+    <div className="catalog-table-container" style={{ padding: '80px 0', minHeight: '800px', position: 'relative', overflow: 'hidden' }}>
       
       <div style={{ textAlign: 'center', marginBottom: '50px', position: 'relative', zIndex: 1 }}>
         <h2 style={{ 
@@ -169,30 +170,43 @@ export default function CatalogTable({ onQuoteRequest }: CatalogTableProps) {
             {showPdf ? 'Ocultar Catálogo' : 'Ver Catálogo Más Detallado'}
           </button>
 
-          {/* SEARCH BAR */}
-          <div style={{ position: 'relative', flex: '1 1 300px' }}>
-            <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary-accent)' }}>
-              <Search size={20} />
+          {/* MASSIVE SEARCH BAR */}
+          <div style={{ position: 'relative', width: '100%', maxWidth: '800px', margin: '0 auto 40px auto' }}>
+            <div style={{ position: 'absolute', left: '24px', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.4)', pointerEvents: 'none' }}>
+              <Search size={28} />
             </div>
             <input 
               type="text" 
-              placeholder="Buscar por nombre, medida o tamaño..." 
+              placeholder="Buscar por descripción o medida..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 width: '100%',
-                padding: '16px 16px 16px 48px',
-                borderRadius: '100px',
-                border: '2px solid rgba(0, 123, 255, 0.2)',
-                fontSize: '1rem',
+                padding: '24px 24px 24px 72px',
+                borderRadius: '24px',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                fontSize: '1.25rem',
+                fontWeight: 500,
                 outline: 'none',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
-                transition: 'all 0.3s ease',
-                color: 'var(--text-primary)',
-                background: 'rgba(255, 255, 255, 0.1)'
+                boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
+                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                color: 'var(--text-inverse)',
+                background: 'rgba(15, 23, 42, 0.6)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
               }}
-              onFocus={(e) => e.target.style.borderColor = 'var(--primary-accent)'}
-              onBlur={(e) => e.target.style.borderColor = 'rgba(0, 123, 255, 0.2)'}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.target.style.background = 'rgba(15, 23, 42, 0.8)';
+                e.target.style.transform = 'translateY(-4px)';
+                e.target.style.boxShadow = '0 32px 64px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.2)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.background = 'rgba(15, 23, 42, 0.6)';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 24px 48px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1)';
+              }}
             />
           </div>
 
@@ -256,13 +270,7 @@ export default function CatalogTable({ onQuoteRequest }: CatalogTableProps) {
       <div style={{ 
         position: 'relative',
         zIndex: 1,
-        background: 'var(--bg-card)', 
-        borderRadius: '24px', 
-        padding: '32px',
-        boxShadow: 'var(--shadow-lg)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(30px)',
-        WebkitBackdropFilter: 'blur(30px)'
+        padding: '0 16px',
       }}>
         <Tabs 
           defaultActiveKey="0" 

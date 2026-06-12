@@ -4,7 +4,9 @@ import confetti from 'canvas-confetti';
 import logoImg from './assets/ventrix-logo-transparent.png';
 import CatalogTable from './components/CatalogTable';
 import AboutUs from './components/AboutUs';
+import { ShaderAnimation } from './components/ui/shader-animation';
 import { Reveal } from './components/Reveal';
+import GlassSelect from './components/ui/GlassSelect';
 import {
   Info,
   X,
@@ -176,6 +178,7 @@ ${contactForm.message}
 
   return (
     <div style={{ minHeight: '100vh', position: 'relative' }}>
+      <ShaderAnimation />
       {/* 1. CORPORATE NAV BAR */}
       <div className={`header-wrapper ${isHeaderHidden ? 'header-hidden' : ''}`}>
         <header className="header">
@@ -222,28 +225,28 @@ ${contactForm.message}
           <div className="hero-grid">
             <Reveal>
             <div className="hero-text">
-              <span className="hero-tag">Rapidez | Disponibilidad | Atención</span>
-              <h1>Abastecimiento Empresarial</h1>
-              <p className="hero-desc">
+              <span className="hero-tag" style={{ background: 'transparent', border: '1px solid var(--secondary-accent)', color: 'var(--secondary-accent)' }}>Rapidez | Disponibilidad | Atención</span>
+              <h1 style={{ fontSize: '5rem', lineHeight: '1', fontWeight: 900, textShadow: '0 10px 30px rgba(0,0,0,0.5)', letterSpacing: '-0.04em' }}>Abastecimiento Empresarial</h1>
+              <p className="hero-desc" style={{ fontSize: '1.25rem', color: 'var(--text-secondary)' }}>
                 Somos una empresa enfocada en el abastecimiento empresarial de desechables, empaques y productos de alta rotación para restaurantes, cafeterías y negocios.
               </p>
               <div className="btn-group">
-                <a href="#catalogo" className="btn btn-secondary">Ver Catálogo</a>
-                <a href="#contacto" className="btn btn-primary">Contáctanos</a>
+                <a href="#catalogo" className="btn btn-secondary" style={{ background: 'transparent', border: '2px solid white', color: 'white' }}>Ver Catálogo</a>
+                <a href="#contacto" className="btn btn-primary" style={{ boxShadow: '0 10px 30px rgba(0, 176, 80, 0.3)' }}>Contáctanos</a>
               </div>
             </div>
             </Reveal>
 
             <Reveal delay="reveal-delay-200">
-            <div className="glass-panel" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'center' }}>
-              <h4 style={{ fontFamily: 'var(--font-display)', textTransform: 'uppercase', fontSize: '0.9rem', color: 'var(--text-primary)', letterSpacing: '0.05em', opacity: 0.9 }}>LO QUE HACEMOS</h4>
+            <div className="floating-card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'center' }}>
+              <h4 style={{ fontFamily: 'var(--font-display)', textTransform: 'uppercase', fontSize: '1rem', color: 'var(--secondary-accent)', letterSpacing: '0.1em', fontWeight: 700 }}>Lo que hacemos</h4>
               
-              <div style={{ borderLeft: '2px solid var(--secondary-accent)', paddingLeft: '16px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                  <PackageCheck size={16} color="var(--primary-accent)" />
-                  <h5 style={{ fontSize: '0.95rem', margin: 0, color: 'var(--text-primary)' }}>Apoyo a tu Negocio</h5>
+              <div style={{ paddingLeft: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                  <PackageCheck size={24} color="var(--text-inverse)" />
+                  <h5 style={{ fontSize: '1.2rem', margin: 0, color: 'var(--text-inverse)', fontWeight: 800 }}>Apoyo a tu Negocio</h5>
                 </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Suministro de Desechables, Empaques, Bolsas, Vasos, Servilletas y productos esenciales de alta rotación.</p>
+                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>Suministro de Desechables, Empaques, Bolsas, Vasos, Servilletas y productos esenciales de alta rotación.</p>
               </div>
               
               <div style={{ borderLeft: '2px solid var(--text-primary)', paddingLeft: '16px' }}>
@@ -279,7 +282,7 @@ ${contactForm.message}
       <AboutUs />
 
       {/* CATÁLOGO PRINCIPAL */}
-      <section id="catalogo" className="catalog-section mesh-bg-light">
+      <section id="catalogo" className="catalog-section">
         <div className="container">
           <Reveal>
             <CatalogTable onQuoteRequest={handleQuoteRequest} />
@@ -288,7 +291,7 @@ ${contactForm.message}
       </section>
 
       {/* 8. CONTACTO / HABLEMOS */}
-      <section className="catalog-section" id="contacto" style={{ borderTop: '1px solid var(--border-light)', padding: '80px 0' }}>
+      <section className="catalog-section" id="contacto" style={{ padding: '120px 0' }}>
         <div className="container">
           <Reveal>
           <div className="section-title-wrap">
@@ -300,7 +303,7 @@ ${contactForm.message}
           </div>
 
           <div className="contacto-grid">
-            <div className="form-card glass-panel" style={{ background: 'var(--bg-card)' }}>
+            <div className="form-card glass-panel" style={{ background: 'transparent' }}>
               <form onSubmit={handleContactSubmit}>
                 <div className="form-group">
                   <label className="form-label">Nombre Completo *</label>
@@ -353,21 +356,20 @@ ${contactForm.message}
 
                 <div className="form-group" style={{ marginTop: '12px' }}>
                   <label className="form-label">Tipo de Negocio *</label>
-                  <select
-                    className="form-input"
+                  <GlassSelect
+                    options={[
+                      "Restaurante / Cafetería",
+                      "Oficinas / Corporativo",
+                      "Eventos / Catering",
+                      "Hotel / Hospitalidad",
+                      "Distribuidor / Mayorista",
+                      "Particular / Otro"
+                    ]}
                     value={contactForm.businessType}
-                    onChange={e => setContactForm({ ...contactForm, businessType: e.target.value })}
+                    onChange={value => setContactForm({ ...contactForm, businessType: value })}
+                    placeholder="Seleccione una opción..."
                     required
-                    style={{ backgroundColor: 'var(--bg-deep)' }}
-                  >
-                    <option value="" disabled>Seleccione una opción...</option>
-                    <option value="Restaurante / Cafetería">Restaurante / Cafetería</option>
-                    <option value="Oficinas / Corporativo">Oficinas / Corporativo</option>
-                    <option value="Eventos / Catering">Eventos / Catering</option>
-                    <option value="Hotel / Hospitalidad">Hotel / Hospitalidad</option>
-                    <option value="Distribuidor / Mayorista">Distribuidor / Mayorista</option>
-                    <option value="Particular / Otro">Particular / Otro</option>
-                  </select>
+                  />
                 </div>
 
                 <div className="form-group" style={{ marginTop: '12px' }}>
@@ -465,7 +467,7 @@ ${contactForm.message}
       </section>
 
       {/* 9. FOOTER */}
-      <footer className="footer" style={{ borderTop: '1px solid var(--border-light)' }}>
+      <footer className="footer">
         <Reveal>
         <div className="container footer-grid">
           <div className="footer-brand">

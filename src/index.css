@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* ==========================================================================
    VENTRIX - PREMIUM MINIMALIST DESIGN SYSTEM (BRIGHT & AIRY)
    ========================================================================== */
@@ -21,7 +25,7 @@
   --text-primary: #FFFFFF;     /* Azul Corporativo para Títulos */
   --text-secondary: #F3F4F6;   /* Gris Corporativo para textos */
   --text-light: #9CA3AF;       
-  --text-inverse: #0B2D5C;     /* White text on dark backgrounds */
+  --text-inverse: #FFFFFF;     /* White text on dark backgrounds */
   
   /* Borders */
   --border-light: rgba(255, 255, 255, 0.1);     
@@ -99,6 +103,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+  text-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+p, span, a, li, label {
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 p {
@@ -118,18 +127,18 @@ p {
 }
 
 .glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: var(--transition-smooth);
 }
 
 .glass-panel:hover {
-  border-color: rgba(0, 123, 255, 0.3);
-  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.3);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-4px);
 }
 
@@ -340,7 +349,7 @@ p {
   display: flex;
   align-items: center;
   position: relative;
-  background: radial-gradient(circle at 70% 30%, #0c336b 0%, var(--bg-hero) 50%, #030c1a 100%);
+  background: transparent;
   color: var(--text-primary);
   overflow: hidden;
 }
@@ -431,11 +440,11 @@ p {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Buttons */
+/* Buttons - Premium App Feel */
 .btn {
-  padding: 12px 28px;
-  font-size: 0.95rem;
-  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 1rem;
+  border-radius: 100px;
   cursor: pointer;
   text-decoration: none;
   transition: var(--transition-smooth);
@@ -470,16 +479,15 @@ p {
   background: var(--color-cta);
   color: #FFFFFF;
   border: none;
-  font-weight: 600;
-  box-shadow: 0 4px 15px rgba(0, 176, 80, 0.25);
-  animation: neon-pulse 2s infinite;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(0, 176, 80, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: var(--transition-smooth);
 }
 
 .btn-primary:hover {
-  background: #009945;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 176, 80, 0.35);
-  animation: none;
+  background: #00CF5E;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 176, 80, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary {
@@ -539,6 +547,7 @@ p {
 .catalog-section {
   padding: 80px 0;
   position: relative;
+  background: transparent;
 }
 
 .catalog-tabs {
@@ -590,17 +599,17 @@ p {
 }
 
 .bento-glass {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-md);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .bento-glass:hover {
-  border-color: rgba(0, 123, 255, 0.3);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
 }
 
 .col-span-12 { grid-column: span 12; }
@@ -622,27 +631,28 @@ p {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--bg-card);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-light);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: var(--transition-smooth);
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-premium);
-  border-color: rgba(0, 123, 255, 0.3);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(59, 130, 246, 0.5);
 }
 
 .product-image-container {
   height: 240px;
-  background: var(--bg-deep);
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
@@ -924,9 +934,7 @@ p {
 .order-section {
   padding: 80px 0;
   position: relative;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
+  background: transparent;
 }
 
 .form-grid {
@@ -942,10 +950,10 @@ p {
 
 .form-card {
   padding: 40px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-md);
-  border-radius: 16px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .form-group {
@@ -1097,8 +1105,7 @@ p {
 
 /* Footer styling */
 .footer {
-  border-top: 1px solid var(--border-light);
-  background: var(--bg-deep);
+  background: transparent;
   padding: 60px 0 30px 0;
   position: relative;
   z-index: 10;
@@ -1143,7 +1150,6 @@ p {
 }
 
 .footer-bottom {
-  border-top: 1px solid var(--border-light);
   padding-top: 24px;
   display: flex;
   justify-content: space-between;
@@ -1568,27 +1574,43 @@ p {
   opacity: 0;
 }
 
-/* Antd Tabs Override for iOS Light Liquid Glass Theme */
+/* Antd Tabs Override for Premium iOS Glass Pills */
+.catalog-table-container .ant-tabs-nav {
+  margin-bottom: 40px !important;
+}
+
+.catalog-table-container .ant-tabs-nav-wrap {
+  justify-content: center;
+}
+
 .catalog-table-container .ant-tabs-tab {
-  color: var(--text-secondary) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
   font-size: 1.1rem;
+  padding: 12px 24px !important;
+  border-radius: 100px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  margin: 0 8px !important;
+}
+
+.catalog-table-container .ant-tabs-tab:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.catalog-table-container .ant-tabs-tab-active {
+  background: rgba(0, 176, 80, 0.15) !important;
+  border: 1px solid rgba(0, 176, 80, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 176, 80, 0.2) !important;
 }
 
 .catalog-table-container .ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: var(--primary-accent) !important;
+  color: var(--color-cta) !important;
   text-shadow: none;
   font-weight: 700;
 }
 
 .catalog-table-container .ant-tabs-ink-bar {
-  background: var(--primary-accent) !important;
-  box-shadow: none;
-}
-
-.catalog-dot-bg {
-  background-color: var(--bg-deep);
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+  display: none !important;
 }
 
 /* ==========================================================================
@@ -1692,26 +1714,43 @@ p {
 }
 
 .b2b-row {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  transition: all 0.2s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.b2b-row:last-child {
-  border-bottom: none;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .b2b-row:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.7);
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 123, 255, 0.3);
 }
 
 .b2b-row.selected {
-  background-color: rgba(0, 176, 80, 0.15);
+  background: rgba(0, 176, 80, 0.15);
+  border-color: var(--color-cta);
+  box-shadow: 0 0 30px rgba(0, 176, 80, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .b2b-cell {
-  padding: 14px 16px;
+  padding: 24px;
   vertical-align: middle;
+  border: none;
+  color: var(--text-primary);
+}
+
+.b2b-cell:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.b2b-cell:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .b2b-cell-checkbox {
@@ -1765,6 +1804,19 @@ p {
 }
 
 @media (max-width: 768px) {
+  .b2b-row {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    padding: 20px !important;
+  }
+  
+  .b2b-row > div:last-child {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  
   .spec-row {
     flex-direction: column;
     align-items: flex-start;
@@ -1798,19 +1850,21 @@ p {
 /* SCROLL REVEAL ANIMATIONS */
 .reveal-element {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(60px) scale(0.95);
+  transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
   will-change: opacity, transform;
 }
 
 .reveal-element.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .reveal-delay-100 { transition-delay: 100ms; }
 .reveal-delay-200 { transition-delay: 200ms; }
 .reveal-delay-300 { transition-delay: 300ms; }
+.reveal-delay-400 { transition-delay: 400ms; }
+.reveal-delay-500 { transition-delay: 500ms; }
 
 /* WHATSAPP FLOATING BUTTON */
 .whatsapp-float {

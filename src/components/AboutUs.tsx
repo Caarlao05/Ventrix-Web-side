@@ -4,7 +4,7 @@ import { Reveal } from './Reveal';
 
 export default function AboutUs() {
   return (
-    <section id="quienes-somos" style={{ padding: '80px 0', background: 'var(--bg-card)' }}>
+    <section id="quienes-somos" style={{ padding: '120px 0', background: 'transparent' }}>
       <div className="container">
         
         {/* SECCIÓN 1: ¿Quiénes Somos? */}
@@ -14,14 +14,16 @@ export default function AboutUs() {
               <Reveal>
 
               <h2 style={{ 
-                fontSize: '2.5rem', 
-                color: 'var(--primary-accent)', 
+                fontSize: '4rem', 
+                color: 'var(--text-inverse)', 
                 fontFamily: 'var(--font-display)',
-                fontWeight: 800,
+                fontWeight: 900,
                 marginBottom: '24px',
-                lineHeight: 1.2
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+                textShadow: '0 10px 30px rgba(0,0,0,0.5)'
               }}>
-                Tu aliado estratégico en abastecimiento empresarial.
+                Tu aliado estratégico.
               </h2>
               <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
                 Somos una empresa enfocada en el abastecimiento empresarial de desechables, empaques y productos de alta rotación para restaurantes, cafeterías y negocios. Trabajamos con un enfoque en:
@@ -73,36 +75,28 @@ export default function AboutUs() {
           <Row gutter={[32, 32]}>
             <Col xs={24} md={12}>
               <Reveal>
-              <Card 
-                hoverable 
-                style={{ height: '100%', borderColor: 'var(--border-light)', borderRadius: '16px', background: 'var(--bg-card)' }}
-                bodyStyle={{ padding: '32px' }}
-              >
+              <div className="floating-card" style={{ height: '100%', padding: '32px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-                  <Target size={32} color="var(--primary-accent)" style={{ marginRight: '16px' }} />
-                  <h3 style={{ fontSize: '1.5rem', margin: 0, color: 'var(--text-primary)' }}>Nuestra Misión</h3>
+                  <Target size={40} color="var(--secondary-accent)" style={{ marginRight: '20px', filter: 'drop-shadow(0 0 12px rgba(96, 165, 250, 0.4))' }} />
+                  <h3 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--text-primary)', fontWeight: 800 }}>Nuestra Misión</h3>
                 </div>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+                <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
                   Brindar soluciones rápidas, confiables y eficientes en abastecimiento empresarial, ofreciendo productos de calidad y atención personalizada que ayuden a nuestros clientes a operar de manera más práctica y organizada.
                 </p>
-              </Card>
+              </div>
               </Reveal>
             </Col>
             <Col xs={24} md={12}>
               <Reveal delay="reveal-delay-200">
-              <Card 
-                hoverable 
-                style={{ height: '100%', borderColor: 'var(--border-light)', borderRadius: '16px', background: 'var(--bg-card)' }}
-                bodyStyle={{ padding: '32px' }}
-              >
+              <div className="floating-card" style={{ height: '100%', padding: '32px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-                  <Eye size={32} color="var(--primary-accent)" style={{ marginRight: '16px' }} />
-                  <h3 style={{ fontSize: '1.5rem', margin: 0, color: 'var(--text-primary)' }}>Nuestra Visión</h3>
+                  <Eye size={40} color="var(--secondary-accent)" style={{ marginRight: '20px', filter: 'drop-shadow(0 0 12px rgba(96, 165, 250, 0.4))' }} />
+                  <h3 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--text-primary)', fontWeight: 800 }}>Nuestra Visión</h3>
                 </div>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+                <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
                   Ser una empresa reconocida en El Salvador por nuestra rapidez, confianza y excelencia en abastecimiento empresarial, construyendo relaciones sólidas y duraderas con nuestros clientes.
                 </p>
-              </Card>
+              </div>
               </Reveal>
             </Col>
           </Row>
@@ -121,40 +115,48 @@ export default function AboutUs() {
 
           <Row gutter={[24, 24]}>
             <Col xs={24} sm={12} lg={6}>
-              <Card bordered={false} style={{ height: '100%', background: 'transparent' }}>
-                <Rocket size={40} color="var(--primary-accent)" style={{ marginBottom: '16px' }} />
-                <h4 style={{ fontSize: '1.2rem', marginBottom: '12px', color: 'var(--text-primary)' }}>Rapidez y Entregas Eficientes</h4>
-                <p style={{ color: 'var(--text-secondary)' }}>
-                  Sabemos que el tiempo es dinero. Programamos entregas ágiles para que tu inventario nunca llegue a cero.
+              <Reveal delay="">
+              <div className="floating-feature" style={{ padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <Rocket size={64} color="var(--secondary-accent)" style={{ marginBottom: '24px', filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.4))' }} />
+                <h4 style={{ fontSize: '1.4rem', marginBottom: '16px', color: 'var(--text-primary)', fontWeight: 800 }}>Rapidez Extrema</h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
+                  El tiempo es dinero. Entregas ágiles para que tu inventario nunca llegue a cero.
                 </p>
-              </Card>
+              </div>
+              </Reveal>
             </Col>
             <Col xs={24} sm={12} lg={6}>
-              <Card bordered={false} style={{ height: '100%', background: 'transparent' }}>
-                <Handshake size={40} color="var(--primary-accent)" style={{ marginBottom: '16px' }} />
-                <h4 style={{ fontSize: '1.2rem', marginBottom: '12px', color: 'var(--text-primary)' }}>Atención Personalizada</h4>
-                <p style={{ color: 'var(--text-secondary)' }}>
-                  Entendemos que cada negocio es diferente. Te damos soluciones y asesoría ajustadas a los requerimientos y volúmenes exactos de tu empresa.
+              <Reveal delay="reveal-delay-100">
+              <div className="floating-feature" style={{ padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <Handshake size={64} color="var(--secondary-accent)" style={{ marginBottom: '24px', filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.4))' }} />
+                <h4 style={{ fontSize: '1.4rem', marginBottom: '16px', color: 'var(--text-primary)', fontWeight: 800 }}>Trato Personalizado</h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
+                  Soluciones y asesoría milimétricamente ajustadas a tu volumen y requerimientos.
                 </p>
-              </Card>
+              </div>
+              </Reveal>
             </Col>
             <Col xs={24} sm={12} lg={6}>
-              <Card bordered={false} style={{ height: '100%', background: 'transparent' }}>
-                <Boxes size={40} color="var(--primary-accent)" style={{ marginBottom: '16px' }} />
-                <h4 style={{ fontSize: '1.2rem', marginBottom: '12px', color: 'var(--text-primary)' }}>Disponibilidad Garantizada</h4>
-                <p style={{ color: 'var(--text-secondary)' }}>
-                  Mantenemos el stock que necesitas para que no tengas que preocuparte por desabastecimientos de última hora.
+              <Reveal delay="reveal-delay-200">
+              <div className="floating-feature" style={{ padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <Boxes size={64} color="var(--secondary-accent)" style={{ marginBottom: '24px', filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.4))' }} />
+                <h4 style={{ fontSize: '1.4rem', marginBottom: '16px', color: 'var(--text-primary)', fontWeight: 800 }}>Stock Infinito</h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
+                  Mantenemos el inventario por ti. Olvídate del desabastecimiento de última hora.
                 </p>
-              </Card>
+              </div>
+              </Reveal>
             </Col>
             <Col xs={24} sm={12} lg={6}>
-              <Card bordered={false} style={{ height: '100%', background: 'transparent' }}>
-                <DollarSign size={40} color="var(--primary-accent)" style={{ marginBottom: '16px' }} />
-                <h4 style={{ fontSize: '1.2rem', marginBottom: '12px', color: 'var(--text-primary)' }}>Precios Competitivos</h4>
-                <p style={{ color: 'var(--text-secondary)' }}>
-                  Estructuramos nuestros costos para ofrecerte el mejor balance entre calidad y precio, protegiendo siempre la rentabilidad de tu negocio.
+              <Reveal delay="reveal-delay-300">
+              <div className="floating-feature" style={{ padding: '40px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <DollarSign size={64} color="var(--secondary-accent)" style={{ marginBottom: '24px', filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.4))' }} />
+                <h4 style={{ fontSize: '1.4rem', marginBottom: '16px', color: 'var(--text-primary)', fontWeight: 800 }}>Rentabilidad</h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
+                  Estructuramos costos para ofrecerte el balance perfecto entre calidad y precio.
                 </p>
-              </Card>
+              </div>
+              </Reveal>
             </Col>
           </Row>
         </div>
