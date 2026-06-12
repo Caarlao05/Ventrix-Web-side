@@ -1,4 +1,4 @@
-import { Row, Col, Card } from 'antd';
+import { Row, Col } from 'antd';
 import { Target, Eye, Rocket, Handshake, Boxes, DollarSign, Building2, Zap, CheckCircle2 } from 'lucide-react';
 import { Reveal } from './Reveal';
 
