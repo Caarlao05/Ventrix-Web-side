@@ -233,14 +233,14 @@ ${contactForm.message}
                 Somos una empresa enfocada en el abastecimiento empresarial de desechables, empaques y productos de alta rotación para restaurantes, cafeterías y negocios.
               </p>
               <div className="btn-group">
-                <a href="#catalogo" className="btn btn-secondary" style={{ background: 'transparent', border: '2px solid white', color: 'white' }}>Ver Catálogo</a>
-                <a href="#contacto" className="btn btn-primary" style={{ boxShadow: '0 10px 30px rgba(0, 176, 80, 0.3)' }}>Contáctanos</a>
+                <a href="#catalogo" className="btn btn-secondary" style={{ background: 'transparent', border: '2px solid #00f3ff', color: '#00f3ff', textShadow: '0 0 5px #00f3ff' }}>Ver Catálogo</a>
+                <a href="#contacto" className="btn-cyber" style={{ boxShadow: '0 0 15px rgba(0, 243, 255, 0.4)' }}>Contáctanos</a>
               </div>
             </div>
             </Reveal>
 
             <Reveal delay="reveal-delay-200">
-            <div className="floating-card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'center' }}>
+            <div className="floating-card cyber-panel" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '20px', justifyContent: 'center' }}>
               <h4 style={{ fontFamily: 'var(--font-display)', textTransform: 'uppercase', fontSize: '1rem', color: 'var(--secondary-accent)', letterSpacing: '0.1em', fontWeight: 700 }}>Lo que hacemos</h4>
               
               <div style={{ paddingLeft: '16px' }}>
@@ -304,8 +304,11 @@ ${contactForm.message}
             </p>
           </div>
 
-          <div className="contacto-grid">
-            <div className="form-card glass-panel" style={{ background: 'transparent' }}>
+          <div className="contacto-grid" style={{ position: 'relative' }}>
+            <div className="ambient-glow-cyan" style={{ top: '-10%', left: '-10%' }}></div>
+            <div className="ambient-glow-magenta" style={{ bottom: '-10%', right: '-10%' }}></div>
+            
+            <div className="form-card cyber-panel" style={{ padding: '32px' }}>
               <form onSubmit={handleContactSubmit}>
                 <div className="form-group">
                   <label className="form-label">Nombre Completo *</label>
@@ -387,8 +390,8 @@ ${contactForm.message}
 
                 <button
                   type="submit"
-                  className="btn btn-primary"
-                  style={{ width: '100%', marginTop: '24px', justifyContent: 'center' }}
+                  className="btn-cyber"
+                  style={{ width: '100%', marginTop: '24px' }}
                 >
                   <Send size={14} style={{ marginRight: '6px' }} /> Enviar Solicitud de Información
                 </button>
