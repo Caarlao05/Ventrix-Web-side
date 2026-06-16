@@ -48,34 +48,44 @@ export default function BackgroundEffects() {
         />
       ))}
 
-      {/* --- PARALLAX BACKGROUND TEXT WITH TEXTREWIND EFFECT --- */}
+      {/* --- PARALLAX BACKGROUND TEXT WITH TEXTREWIND EFFECT AND MARQUEE --- */}
       <motion.div
-        className="text-black dark:text-white italic tracking-widest stroke-[#d6f4f4]"
         style={{
           y: textY,
           position: 'absolute',
           top: '20vh',
           width: '100%',
           display: 'flex',
-          justifyContent: 'center',
           alignItems: 'center',
-          opacity: 0.1, // Increased opacity slightly so the colors pop
+          opacity: 0.15, // Slightly more opaque
           color: '#FFFFFF',
           fontFamily: 'var(--font-display)',
           fontSize: '25vw', // Massive text
           fontWeight: 900,
           userSelect: 'none',
           whiteSpace: 'nowrap',
-          textShadow: `10px 10px 0px #07bccc, 
-                       15px 15px 0px #e601c0, 
-                       20px 20px 0px #e9019a, 
-                       25px 25px 0px #f40468, 
-                       45px 45px 10px #f40468`,
+          textShadow: `10px 10px 0px #00d2ff, 
+                       15px 15px 0px #00a8ff, 
+                       20px 20px 0px #007bff, 
+                       25px 25px 0px #0056b3, 
+                       45px 45px 10px #0056b3`,
           transition: 'text-shadow 0.2s ease-in-out'
         }}
         whileHover={{ textShadow: "none" }}
       >
-        VENTRIX
+        <motion.div
+          animate={{ x: [0, -3000] }}
+          transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
+          style={{ display: 'flex', gap: '20vw' }}
+          className="text-black dark:text-white italic tracking-widest stroke-[#d6f4f4]"
+        >
+          <span>VENTRIX</span>
+          <span>VENTRIX</span>
+          <span>VENTRIX</span>
+          <span>VENTRIX</span>
+          <span>VENTRIX</span>
+          <span>VENTRIX</span>
+        </motion.div>
       </motion.div>
     </div>
   );
