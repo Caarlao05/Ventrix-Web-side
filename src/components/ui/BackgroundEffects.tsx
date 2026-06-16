@@ -48,8 +48,9 @@ export default function BackgroundEffects() {
         />
       ))}
 
-      {/* --- PARALLAX BACKGROUND TEXT --- */}
+      {/* --- PARALLAX BACKGROUND TEXT WITH TEXTREWIND EFFECT --- */}
       <motion.div
+        className="text-black dark:text-white italic tracking-widest stroke-[#d6f4f4]"
         style={{
           y: textY,
           position: 'absolute',
@@ -58,15 +59,21 @@ export default function BackgroundEffects() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          opacity: 0.03, // Barely visible watermark
+          opacity: 0.1, // Increased opacity slightly so the colors pop
           color: '#FFFFFF',
           fontFamily: 'var(--font-display)',
           fontSize: '25vw', // Massive text
           fontWeight: 900,
-          letterSpacing: '-0.05em',
           userSelect: 'none',
-          whiteSpace: 'nowrap'
+          whiteSpace: 'nowrap',
+          textShadow: `10px 10px 0px #07bccc, 
+                       15px 15px 0px #e601c0, 
+                       20px 20px 0px #e9019a, 
+                       25px 25px 0px #f40468, 
+                       45px 45px 10px #f40468`,
+          transition: 'text-shadow 0.2s ease-in-out'
         }}
+        whileHover={{ textShadow: "none" }}
       >
         VENTRIX
       </motion.div>
